@@ -24,13 +24,13 @@ M1:
 
 IF EXISTS (SELECT 1 FROM sys.databases WHERE name = 'DataWarehouse')
 BEGIN
-    PRINT '⚠️ Database "DataWarehouse" already exists.';
+    PRINT '⚠ Database "DataWarehouse" already exists.';
     PRINT 'Please choose a different name or manually drop the existing one.';
 END
 ELSE
 BEGIN
     CREATE DATABASE DataWarehouse;
-    PRINT '✅ "DataWarehouse" has been created.';
+    PRINT '"DataWarehouse" has been created.';
 END
 
 
@@ -58,7 +58,7 @@ END
 ELSE
 BEGIN
     CREATE DATABASE DataWarehouse;
-    PRINT '✅ "DataWarehouse" has been created.';
+    PRINT ' "DataWarehouse" has been created.';
 END; 
 
 
