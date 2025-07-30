@@ -1,1 +1,92 @@
 
+/*
+=============================================================
+Create Database and Schemas
+=============================================================
+Script Purpose:
+    This script creates a new database named 'DataWarehouse' after checking if it already exists. 
+    If the database exists, it is dropped and recreated. Additionally, the script sets up three schemas 
+    within the database: 'bronze', 'silver', and 'gold'.
+	
+WARNING:
+    Running this script will drop the entire 'DataWarehouse' database if it exists. 
+    All data in the database will be permanently deleted. Proceed with caution 
+    and ensure you have proper backups before running this script.
+*/
+
+USE master;
+
+GO
+
+
+
+M1:
+
+IF EXISTS (SELECT 1 FROM sys.databases WHERE name = 'DataWarehouse')
+BEGIN
+    PRINT '⚠️ Database "DataWarehouse" already exists.';
+    PRINT 'Please choose a different name or manually drop the existing one.';
+END
+ELSE
+BEGIN
+    CREATE DATABASE DataWarehouse;
+    PRINT '✅ "DataWarehouse" has been created.';
+END
+
+
+
+
+M2:
+-- Drop and recreate the 'DataWarehouse' database                                                                      
+IF EXISTS (SELECT 1 FROM sys.databases WHERE name = 'DataWarehouse') 
+BEGIN
+    ALTER DATABASE DataWarehouse SET SINGLE_USER WITH ROLLBACK IMMEDIATE;
+    DROP DATABASE DataWarehouse;
+END;
+GO
+
+
+
+
+M3:
+IF EXISTS (SELECT 1 FROM sys.databases WHERE name = 'DataWarehouse')
+BEGIN
+    PRINT '⚠ WARNING: A database named "DataWarehouse" already exists.';
+    PRINT ' Action halted to prevent accidental deletion.';
+    -- You can manually choose to rename or drop the DB at your own discretion
+END
+ELSE
+BEGIN
+    CREATE DATABASE DataWarehouse;
+    PRINT '✅ "DataWarehouse" has been created.';
+END; 
+
+
+Extra: -- Revoke ALTER and CONTROL permissions on the database
+USE master;
+DENY CONTROL ON DATABASE::[DataWarehouse] TO [username_or_role];
+DENY ALTER ON DATABASE::[DataWarehouse] TO [username_or_role];
+
+Only users with the ALTER, CONTROL, or DROP DATABASE permission can drop a database
+To prevent accidental deletion:
+Do not grant DROP DATABASE permission to non-admin users.
+Use least privilege principle for roles.
+
+
+
+-- Create the 'DataWarehouse' database
+CREATE DATABASE DataWarehouse;
+GO
+
+USE DataWarehouse;
+GO
+
+-- Create Schemas
+CREATE SCHEMA bronze;
+GO
+
+CREATE SCHEMA silver;
+GO
+
+CREATE SCHEMA gold;
+GO
