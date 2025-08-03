@@ -1,4 +1,24 @@
-EXEC BRONZE.load_bronze;
+/* ================================================================================
+Procedure Name: bronze.load_bronze
+====================================================================================
+Overview:
+    This procedure is responsible for importing raw CSV data files into staging-level
+    tables located within the 'bronze' schema. It ensures that each table is refreshed
+    by clearing any pre-existing content before performing the import operation.
+
+Functionality:
+    - Empties target tables in the bronze layer using TRUNCATE operations.
+    - Loads new data using SQL Server's BULK INSERT mechanism from defined CSV sources.
+
+Parameters:
+    None. 
+    This procedure is designed to run without inputs and does not return a result set.
+
+How to Run:
+    EXEC bronze.load_bronze;
+==================================================================================== */
+
+
 USE SQLPROJECT1;
 GO
 
