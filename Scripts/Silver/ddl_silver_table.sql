@@ -12,7 +12,7 @@ BEGIN
         -- CRM_cust_info
         SET @start_time = GETDATE();
         IF OBJECT_ID('SILVER.CRM_cust_info', 'U') IS NOT NULL
-            RAISERROR('❌ SILVER.CRM_cust_info already exists. Creation blocked.', 16, 1);
+            RAISERROR('SILVER.CRM_cust_info already exists. Creation blocked.', 16, 1);
         ELSE
             CREATE TABLE SILVER.CRM_cust_info (
                 cst_id INT,
@@ -24,12 +24,12 @@ BEGIN
                 cst_create_date DATE
             );
         SET @end_time = GETDATE();
-        PRINT '✅ SILVER.CRM_cust_info created in ' + CAST(DATEDIFF(SECOND, @start_time, @end_time) AS VARCHAR) + ' seconds';
+        PRINT 'SILVER.CRM_cust_info created in ' + CAST(DATEDIFF(SECOND, @start_time, @end_time) AS VARCHAR) + ' seconds';
 
         -- CRM_prd_info
         SET @start_time = GETDATE();
         IF OBJECT_ID('SILVER.CRM_prd_info', 'U') IS NOT NULL
-            RAISERROR('❌ SILVER.CRM_prd_info already exists. Creation blocked.', 16, 1);
+            RAISERROR('SILVER.CRM_prd_info already exists. Creation blocked.', 16, 1);
         ELSE
             CREATE TABLE SILVER.CRM_prd_info (
                 prd_id INT,
@@ -41,12 +41,12 @@ BEGIN
                 prd_end_dt DATETIME
             );
         SET @end_time = GETDATE();
-        PRINT '✅ SILVER.CRM_prd_info created in ' + CAST(DATEDIFF(SECOND, @start_time, @end_time) AS VARCHAR) + ' seconds';
+        PRINT 'SILVER.CRM_prd_info created in ' + CAST(DATEDIFF(SECOND, @start_time, @end_time) AS VARCHAR) + ' seconds';
 
         -- CRM_sales_details
         SET @start_time = GETDATE();
         IF OBJECT_ID('SILVER.CRM_sales_details', 'U') IS NOT NULL
-            RAISERROR('❌ SILVER.CRM_sales_details already exists. Creation blocked.', 16, 1);
+            RAISERROR('SILVER.CRM_sales_details already exists. Creation blocked.', 16, 1);
         ELSE
             CREATE TABLE SILVER.CRM_sales_details (
                 sls_ord_num NVARCHAR(50),
@@ -60,12 +60,12 @@ BEGIN
                 sls_priceINT INT
             );
         SET @end_time = GETDATE();
-        PRINT '✅ SILVER.CRM_sales_details created in ' + CAST(DATEDIFF(SECOND, @start_time, @end_time) AS VARCHAR) + ' seconds';
+        PRINT 'SILVER.CRM_sales_details created in ' + CAST(DATEDIFF(SECOND, @start_time, @end_time) AS VARCHAR) + ' seconds';
 
         -- erp_cust_az12
         SET @start_time = GETDATE();
         IF OBJECT_ID('SILVER.erp_cust_az12', 'U') IS NOT NULL
-            RAISERROR('❌ SILVER.erp_cust_az12 already exists. Creation blocked.', 16, 1);
+            RAISERROR('SILVER.erp_cust_az12 already exists. Creation blocked.', 16, 1);
         ELSE
             CREATE TABLE SILVER.erp_cust_az12 (
                 CID NVARCHAR(50),
@@ -73,24 +73,24 @@ BEGIN
                 GEN VARCHAR(50)
             );
         SET @end_time = GETDATE();
-        PRINT '✅ SILVER.erp_cust_az12 created in ' + CAST(DATEDIFF(SECOND, @start_time, @end_time) AS VARCHAR) + ' seconds';
+        PRINT 'SILVER.erp_cust_az12 created in ' + CAST(DATEDIFF(SECOND, @start_time, @end_time) AS VARCHAR) + ' seconds';
 
         -- erp_loc_a10
         SET @start_time = GETDATE();
         IF OBJECT_ID('SILVER.erp_loc_a10', 'U') IS NOT NULL
-            RAISERROR('❌ SILVER.erp_loc_a10 already exists. Creation blocked.', 16, 1);
+            RAISERROR('SILVER.erp_loc_a10 already exists. Creation blocked.', 16, 1);
         ELSE
             CREATE TABLE SILVER.erp_loc_a10 (
                 CID NVARCHAR(50),
                 CNTRY VARCHAR(50)
             );
         SET @end_time = GETDATE();
-        PRINT '✅ SILVER.erp_loc_a10 created in ' + CAST(DATEDIFF(SECOND, @start_time, @end_time) AS VARCHAR) + ' seconds';
+        PRINT 'SILVER.erp_loc_a10 created in ' + CAST(DATEDIFF(SECOND, @start_time, @end_time) AS VARCHAR) + ' seconds';
 
         -- erp_px_cat_g1v2
         SET @start_time = GETDATE();
         IF OBJECT_ID('SILVER.erp_px_cat_g1v2', 'U') IS NOT NULL
-            RAISERROR('❌ SILVER.erp_px_cat_g1v2 already exists. Creation blocked.', 16, 1);
+            RAISERROR('SILVER.erp_px_cat_g1v2 already exists. Creation blocked.', 16, 1);
         ELSE
             CREATE TABLE SILVER.erp_px_cat_g1v2 (
                 ID NVARCHAR(50),
@@ -99,13 +99,13 @@ BEGIN
                 MAINTENANCE NVARCHAR(50)
             );
         SET @end_time = GETDATE();
-        PRINT '✅ SILVER.erp_px_cat_g1v2 created in ' + CAST(DATEDIFF(SECOND, @start_time, @end_time) AS VARCHAR) + ' seconds';
+        PRINT 'SILVER.erp_px_cat_g1v2 created in ' + CAST(DATEDIFF(SECOND, @start_time, @end_time) AS VARCHAR) + ' seconds';
 
-        PRINT '✅ SILVER TABLE SETUP COMPLETED SUCCESSFULLY';
+        PRINT 'SILVER TABLE SETUP COMPLETED SUCCESSFULLY';
 
     END TRY
     BEGIN CATCH
-        PRINT '⚠️ ERROR OCCURRED DURING SILVER SETUP';
+        PRINT 'ERROR OCCURRED DURING SILVER SETUP';
         PRINT ERROR_MESSAGE();
     END CATCH
 END;
